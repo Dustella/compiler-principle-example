@@ -1,0 +1,112 @@
+Vn: E, F, T, 
+Vt: (, ), *, +, i, 
+/-------------------------没有消除左递归-----------------------------/
+规格显示：
+E->E+T|T
+F->(E)|i
+T->F|T*F
+
+FIRST集为：
+
+FIRST(E) : ( i 
+FIRST(F) : ( i 
+FIRST(T) : ( i 
+
+FOLLOW集为：
+
+FOLLOW(E) : $ ) + 
+FOLLOW(F) : $ ) * + 
+FOLLOW(T) : $ ) * + 
+
+显示table表：
+
+[E] meet [$] chose:  E -> error
+[E] meet [(] chose:  E -> T
+[E] meet [)] chose:  E -> error
+[E] meet [*] chose:  E -> error
+[E] meet [+] chose:  E -> error
+[E] meet [i] chose:  E -> T
+[F] meet [$] chose:  F -> error
+[F] meet [(] chose:  F -> (E)
+[F] meet [)] chose:  F -> error
+[F] meet [*] chose:  F -> error
+[F] meet [+] chose:  F -> error
+[F] meet [i] chose:  F -> i
+[T] meet [$] chose:  T -> error
+[T] meet [(] chose:  T -> T*F
+[T] meet [)] chose:  T -> error
+[T] meet [*] chose:  T -> error
+[T] meet [+] chose:  T -> error
+[T] meet [i] chose:  T -> T*F
+/--------------------------------------------------------------------/
+
+
+/-------------------------已经消除左递归-----------------------------/
+规格显示：
+
+A->+TA|@
+B->*(TA)B|*iB|@
+E->TA
+F->(TA)|i
+T->(TA)B|iB
+FIRST集为：
+
+FIRST(A) : + @ 
+FIRST(B) : * @ 
+FIRST(E) : ( i 
+FIRST(F) : ( i 
+FIRST(T) : ( i 
+
+FOLLOW集为：
+
+FOLLOW(A) : $ ) 
+FOLLOW(B) : $ ) + 
+FOLLOW(E) : $ 
+FOLLOW(F) : 
+FOLLOW(T) : $ ) + 
+
+显示table表：
+
+[A] meet [$] chose:  A -> @
+[A] meet [(] chose:  A -> error
+[A] meet [)] chose:  A -> @
+[A] meet [*] chose:  A -> error
+[A] meet [+] chose:  A -> +TA
+[A] meet [@] chose:  A -> @
+[A] meet [i] chose:  A -> error
+[B] meet [$] chose:  B -> @
+[B] meet [(] chose:  B -> error
+[B] meet [)] chose:  B -> @
+[B] meet [*] chose:  B -> *iB
+[B] meet [+] chose:  B -> @
+[B] meet [@] chose:  B -> @
+[B] meet [i] chose:  B -> error
+[E] meet [$] chose:  E -> error
+[E] meet [(] chose:  E -> TA
+[E] meet [)] chose:  E -> error
+[E] meet [*] chose:  E -> error
+[E] meet [+] chose:  E -> error
+[E] meet [@] chose:  E -> error
+[E] meet [i] chose:  E -> TA
+[F] meet [$] chose:  F -> error
+[F] meet [(] chose:  F -> (TA)
+[F] meet [)] chose:  F -> error
+[F] meet [*] chose:  F -> error
+[F] meet [+] chose:  F -> error
+[F] meet [@] chose:  F -> error
+[F] meet [i] chose:  F -> i
+[T] meet [$] chose:  T -> error
+[T] meet [(] chose:  T -> (TA)B
+[T] meet [)] chose:  T -> error
+[T] meet [*] chose:  T -> error
+[T] meet [+] chose:  T -> error
+[T] meet [@] chose:  T -> error
+[T] meet [i] chose:  T -> iB
+/--------------------------------------------------------------------/
+
+
+/-------------------------对词法进行分析----------------------------/
+/--------------------------------------------------------------------/
+
+
+Press any key to continue . . . 
